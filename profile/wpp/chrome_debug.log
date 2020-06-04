@@ -1,0 +1,8 @@
+[6200:11896:0603/223620.205:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/sequential-ptt-middle_7fa161964e93db72b8d00ae22189d75f.mp3" resulted in a network error response: the promise was rejected.", source:  (0)
+[6200:11896:0603/223620.205:INFO:CONSOLE(0)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (0)
+[6200:11896:0603/223620.760:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/sequential-ptt-end_62ed28be622237546fd39f9468a76a49.mp3" resulted in a network error response: the promise was rejected.", source:  (0)
+[6200:11896:0603/223620.760:INFO:CONSOLE(0)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (0)
+[6200:11896:0603/223620.905:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/notification_0a598282e94e87dea63e466d115e4a83.mp3" resulted in a network error response: the promise was rejected.", source:  (0)
+[6200:11896:0603/223620.905:INFO:CONSOLE(0)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (0)
+[6200:4488:0603/223625.249:ERROR:device_event_log_impl.cc(208)] [22:36:25.249] Bluetooth: bluetooth_adapter_winrt.cc:1150 RequestRadioAccessAsync failed: RadioAccessStatus::DeniedByUserWill not be able to change radio power.
+[6200:4488:0603/223759.322:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
