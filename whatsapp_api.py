@@ -7,12 +7,15 @@ from time import sleep
 WP_LINK = 'https://web.whatsapp.com'
 
 ## XPATHS
+# _1U1xa
+
 CONTACTS = '//*[@id="main"]/header/div[2]/div[2]/span'
-SEND = '//*[@id="main"]/footer/div[1]/div[3]'
+SEND = '//*[@id="main"]/footer/div[1]/div[3]/button'
 MESSAGE_BOX = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'
 NEW_CHAT = '//*[@id="side"]/header/div[2]/div/span/div[2]/div'
 FIRST_CONTACT = '//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div[2]/div/div/div/div[2]/div'
 SEARCH_CONTACT ='//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div[1]/div/label/div/div[2]'
+CAMPO_BUSCAR = '//*[@id="side"]/div[1]/div/label/div/div[2]'
 UNREAD_CHAT = "//span[@class='_31gEB']/ancestor::div[4]"
 
 
@@ -63,8 +66,18 @@ class WhatsApp:
 
     def send_message(self, message):
         '''Write and send message'''
-        self.write_message(message)
-        self._click(SEND)
+        message = message.rstrip('\n')
+        
+        if len(message) > 1:
+            self.write_message(message)
+            print("escreveu")
+            sleep(2)
+            self._click(SEND)
+            print("clicou em Send")
+        
+        # print("esperou")
+           
+            
 
     def get_group_numbers(self):
         '''Get phone numbers from a whatsapp group'''
@@ -73,6 +86,19 @@ class WhatsApp:
             return el.text.split(',')
         except Exception as e:
             print("Group header not found")
+
+    def espera_abrir_whatsapp(self):
+        
+        a = 1
+        
+        while a == 1: 
+            try:
+                self._click(CAMPO_BUSCAR)
+                a = 2
+                break
+            except Exception: 
+                print("Aguardando Abrir")
+                sleep(2)
 
     def search_contact(self, keyword):
         '''Write and send message'''
@@ -94,13 +120,15 @@ class WhatsApp:
         return all_messages[-1]
     
     def enter_unread_chat(self):
-        while True:
+        while True: 
             try:
                 el = self.driver.find_element_by_xpath(UNREAD_CHAT)
-            # Entra na conversa
+                # Entra na conversa
                 el.click()
                 break
             except Exception:
                 sleep(5)
                 print("Elemento Não Encontrado")
-            
+        
+        
+        
