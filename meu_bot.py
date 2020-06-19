@@ -14,36 +14,36 @@ wp.espera_abrir_whatsapp()
 # Lista de nomes ou nomeros de telefone a serem pesquisados
 # IMPORTANTE: O nome deve ser nao ambiguo pois ele retornara o primeiro resultado
 
-
-
 def ExecutaEnvios():  
 
-    
     while True:
-    
-    
         if path.exists("enviar_mensagens.txt"):
         
-            
             arq_pause = open('pause.txt', 'w+')
             arq_pause.close()
-            
             
             f = open('enviar_mensagens.txt', 'r', encoding = 'utf8')
             linha = f.readline()
             
+            arq_erro = open('erros.txt', 'w+')
+            
+            
+            
             while (len(linha.rstrip('\n')) > 1) :
-                splitando = linha.split("|")
-                wp.search_contact(splitando[0])
-                
-                wp.send_message(splitando[1])
-                
-                linha = f.readline()
-                print(linha)
-                            
+                try: 
+                    splitando = linha.split("|")
+                    wp.search_contact(splitando[0])
+                    
+                    wp.send_message(splitando[1])
+                    
+                    linha = f.readline()
+                    print(linha)
+                except Exception as e: 
+                    arq_erro.write(linha)
+                    
             f.close()
-            
-            
+            arq_erro.close()
+            os.remove("enviar_mensagens.txt")
             os.remove('pause.txt')
             
             sleep(2)
@@ -53,6 +53,5 @@ def ExecutaEnvios():
             
         
         sleep(2)
-
 ExecutaEnvios()
 # wp.driver.close()

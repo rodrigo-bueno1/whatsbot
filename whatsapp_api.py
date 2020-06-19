@@ -24,7 +24,8 @@ class WhatsApp:
         self.driver = self._setup_driver()
         self.driver.get(WP_LINK)
         print("Please scan the QR Code")
-
+    
+    
     @staticmethod
     def _setup_driver():
         print('Loading...')
@@ -64,6 +65,10 @@ class WhatsApp:
         el = self._get_element(MESSAGE_BOX)
         el.send_keys(Keys.SHIFT, Keys.INSERT)
 
+    def teste(self):
+        
+        self.driver.get(WP_LINK + "/send?phone=+555180403522&text=olapessoa")
+
     def send_message(self, message):
         '''Write and send message'''
         message = message.rstrip('\n')
@@ -71,10 +76,9 @@ class WhatsApp:
         if len(message) > 1:
             self.write_message(message)
             print("escreveu")
-            sleep(2)
             self._click(SEND)
             print("clicou em Send")
-        
+        # sleep(1)
         # print("esperou")
            
             
@@ -105,11 +109,9 @@ class WhatsApp:
         self._click(NEW_CHAT)
         self._send_keys(SEARCH_CONTACT, keyword)
         sleep(1)
-        try:
-            self._click(FIRST_CONTACT)
-        except Exception as e:
-            print("Contact not found")
-            
+        self._click(FIRST_CONTACT)
+        
+        
     def get_all_messages(self):
         all_messages_element = self.driver.find_elements_by_class_name('_12pGw')
         all_messages_text = [e.text for e in all_messages_element]
